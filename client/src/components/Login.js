@@ -1,35 +1,45 @@
 import React, { useState } from 'react';
-import './Login.css';
+import "./Login.css"
 
-function Login() {
-  const [email, setEmail] = useState('');
+function Login({ onLogin }) {
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
+    onLogin(username, password);
   };
 
   return (
     <div className="login">
       <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Username:</label>
           <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Password:</label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
+          <label className="show-password">
+            <input
+              type="checkbox"
+              checked={showPassword}
+              onChange={() => setShowPassword(!showPassword)}
+            />
+            Show Password
+          </label>
         </div>
         <button type="submit">Login</button>
       </form>
