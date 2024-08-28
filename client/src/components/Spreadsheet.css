@@ -1,46 +1,80 @@
 .spreadsheet {
-  margin: 20px auto;
-  width: 80%;
-  border: 1px solid #ccc;
+  font-family: 'Arial', sans-serif;
+  padding: 30px;
+  max-width: auto;
+  margin: 0 auto;
+  background-color: #f8f9fa;
   border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logout-button {
+  background-color: #e33c4d;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.logout-button:hover {
+  background-color: #c1081b;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.control-button:hover:enabled {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  background-color: rgb(235, 235, 235);
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 td {
-  border: 1px solid #ccc;
+  border: 1px solid #dee2e6;
+}
+
+input[type="text"] {
+  width: 100%;
   padding: 10px;
-  text-align: center;
-}
-
-.logout-button {
-  padding: 10px 15px;
-  background-color: #ff4d4d;
   border: none;
-  border-radius: 4px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  float: right;
+  outline: none;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
-.spreadsheet button {
-  margin-right: 10px;
-  padding: 8px 12px;
-  padding-top: 10px;
-  background-color: #007bff;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  cursor: pointer;
+input[type="text"]:focus {
+  background-color: #e9ecef;
 }
 
-.spreadsheet button:hover {
-  background-color: #0056b3;
+
+.header-row input {
+  background-color: #f2f2f2;
 }
