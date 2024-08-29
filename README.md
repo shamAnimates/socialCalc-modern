@@ -1,5 +1,5 @@
 clone the repository
 
-cd repository_path/client
+cd server
 
-npm start
+node server.js
