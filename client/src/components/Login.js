@@ -11,6 +11,10 @@ function Login({ onLogin }) {
     onLogin(username, password);
   };
 
+  const handleRegister = () => {
+    console.log("new data"); // sambhal liyo miglani :)
+  };
+
   return (
     <div className="login">
       <h2>Login</h2>
@@ -27,7 +31,7 @@ function Login({ onLogin }) {
         <div className="form-group">
           <label>Password:</label>
           <input
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -42,6 +46,9 @@ function Login({ onLogin }) {
           </label>
         </div>
         <button type="submit">Login</button>
+        <div className="register-button">
+          <button onClick={handleRegister}>Register</button>
+        </div>
       </form>
     </div>
   );

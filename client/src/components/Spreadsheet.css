@@ -8,6 +8,12 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.table-name{
+  align-items: center;
+  padding-bottom: 15px;
+  max-width: 800px;
+}
+
 .logout-button {
   background-color: #e33c4d;
   border: none;
@@ -40,6 +46,7 @@ button {
   transition: background-color 0.3s ease;
 }
 
+
 .control-button:hover:enabled {
   background-color: #0056b3;
 }
@@ -48,6 +55,7 @@ button:disabled {
   background-color: #6c757d;
   cursor: not-allowed;
 }
+
 
 table {
   width: 100%;
@@ -77,4 +85,14 @@ input[type="text"]:focus {
 
 .header-row input {
   background-color: #f2f2f2;
+}
+
+.control-button{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.back-button{
+  margin-left: 5px;
+  margin-right: 5px;
 }

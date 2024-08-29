@@ -61,3 +61,19 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #0056b3;
 }
+
+.register-button{
+  margin-top: 10px;
+  text-align: center;
+}
+
+.register-button button{
+  color: #a7a6fd;
+  background-color: #f9f9f9;
+  font-size: 14px;
+}
+
+.register-button button:hover {
+  text-decoration: underline;
+  color: #7d7be9;
+}

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './Spreadsheet.css';
 
-function Spreadsheet({ onLogout }) {
+function Spreadsheet({ onLogout, onBack }) {
   const [data, setData] = useState([
-    ['', '', ''],
+    ['Title 1', 'Title 2', 'Title 3'],
     ['', '', ''],
     ['', '', ''],
   ]);
@@ -56,16 +56,22 @@ function Spreadsheet({ onLogout }) {
   return (
     <div className="spreadsheet">
       <button onClick={onLogout} className="logout-button">Logout</button>
+      <button onClick={onBack} className="back-button">Back to Dashboard</button>
       <div className="controls">
-        <button className='control-button' onClick={undo} disabled={currentHistoryIndex === 0}>Undo</button>
-        <button className='control-button' onClick={redo} disabled={currentHistoryIndex === history.length - 1}>Redo</button>
-        <button className='control-button' onClick={addRow}>Add Row</button>
-        <button className='control-button' onClick={addColumn}>Add Column</button>
+        <div className='bg1'>
+          <button className='control-button' onClick={undo} disabled={currentHistoryIndex === 0}>Undo</button>
+          <button className='control-button' onClick={redo} disabled={currentHistoryIndex === history.length - 1}>Redo</button>
+        </div>
+        <div className='bg2'>
+          <button className='control-button' onClick={addRow}>Add Row</button>
+          <button className='control-button' onClick={addColumn}>Add Column</button>
+        </div>
       </div>
+      <div className='table-name'> <input type='text' placeholder='Enter table name'></input></div>
       <table>
         <tbody>
           {data.map((row, rowIndex) => (
-            <tr key={rowIndex}>
+            <tr key={rowIndex} className={rowIndex === 0 ? 'header-row' : ''}>
               {row.map((cell, cellIndex) => (
                 <td key={cellIndex}>
                   <input
