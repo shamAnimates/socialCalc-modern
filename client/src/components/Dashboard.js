@@ -7,8 +7,8 @@ function Dashboard({ spreadsheets, handleOpenSpreadsheet, handleAddSpreadsheet, 
       <h3>Select a Spreadsheet</h3>
       <ul>
         {spreadsheets.map((sheet) => (
-          <li key={sheet.id}>
-            <button onClick={() => handleOpenSpreadsheet(sheet.id)}>
+          <li key={sheet._id}>
+            <button onClick={() => handleOpenSpreadsheet(sheet._id)}>
               {sheet.name}
             </button>
           </li>

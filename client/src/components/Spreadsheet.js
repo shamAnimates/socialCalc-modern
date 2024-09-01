@@ -1,15 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Spreadsheet.css';
 
-function Spreadsheet({ onLogout, onBack }) {
-  const [data, setData] = useState([
-    ['Title 1', 'Title 2', 'Title 3'],
-    ['', '', ''],
-    ['', '', ''],
-  ]);
-
+function Spreadsheet({ spreadsheetId, onLogout, onBack }) {
+  const [data, setData] = useState([['', '', ''], ['', '', ''], ['', '', '']]);
   const [history, setHistory] = useState([data]);
   const [currentHistoryIndex, setCurrentHistoryIndex] = useState(0);
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    if (!spreadsheetId) return;
+  
+    const fetchSpreadsheet = async () => {
+      try {
+        const response = await fetch(`/api/spreadsheets/${spreadsheetId}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+          },
+        });
+  
+        if (response.ok) {
+          const spreadsheet = await response.json();
+          setData(spreadsheet.data || []);
+          setHistory([spreadsheet.data || []]);
+          setName(spreadsheet.name || '');
+        } else {
+          console.error('Failed to fetch spreadsheet');
+        }
+      } catch (error) {
+        console.error('Error fetching spreadsheet:', error);
+      }
+    };
+  
+    fetchSpreadsheet();
+  }, [spreadsheetId]);
 
   const handleCellChange = (rowIndex, cellIndex, value) => {
     const newData = [...data];
@@ -53,6 +76,32 @@ function Spreadsheet({ onLogout, onBack }) {
     updateHistory(newData);
   };
 
+  const handleSave = async () => {
+    try {
+        const token = localStorage.getItem('authToken');
+        const response = await fetch(`/api/spreadsheets/${spreadsheetId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            body: JSON.stringify({ 
+                data,
+                name: document.querySelector('.table-name input').value // Use the actual input value here
+            }),
+        });
+
+        if (response.ok) {
+            alert('Spreadsheet updated successfully');
+        } else {
+            console.error('Failed to update spreadsheet');
+        }
+    } catch (error) {
+        console.error('Error updating spreadsheet:', error);
+    }
+};
+
+
   return (
     <div className="spreadsheet">
       <button onClick={onLogout} className="logout-button">Logout</button>
@@ -65,9 +114,17 @@ function Spreadsheet({ onLogout, onBack }) {
         <div className='bg2'>
           <button className='control-button' onClick={addRow}>Add Row</button>
           <button className='control-button' onClick={addColumn}>Add Column</button>
+          <button className='control-button' onClick={handleSave}>Save</button>
         </div>
       </div>
-      <div className='table-name'> <input type='text' placeholder='Enter table name'></input></div>
+      <div className='table-name'>
+        <input 
+          type='text' 
+          placeholder='Enter table name'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </div>
       <table>
         <tbody>
           {data.map((row, rowIndex) => (

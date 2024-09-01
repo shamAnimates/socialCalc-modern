@@ -1,0 +1,80 @@
+.Register {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .show-password {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .show-password input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .register-button{
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .register-button button{
+    color: #a7a6fd;
+    background-color: #f9f9f9;
+    font-size: 14px;
+  }
+  
+  .register-button button:hover {
+    text-decoration: underline;
+    color: #7d7be9;
+  }
+  

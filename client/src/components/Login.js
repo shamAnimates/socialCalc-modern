@@ -1,18 +1,30 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-function Login({ onLogin }) {
+function Login({ onLogin, onShowRegister }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onLogin(username, password);
-  };
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
 
-  const handleRegister = () => {
-    console.log("new data"); // sambhal liyo miglani :)
+      if (response.ok) {
+        const data = await response.json();
+        onLogin(data);
+      } else {
+        alert('Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Login failed. Please try again.');
+    }
   };
 
   return (
@@ -46,10 +58,10 @@ function Login({ onLogin }) {
           </label>
         </div>
         <button type="submit">Login</button>
-        <div className="register-button">
-          <button onClick={handleRegister}>Register</button>
-        </div>
       </form>
+      <div className="register-button">
+        <button type="button" onClick={onShowRegister}>Register</button>
+      </div>
     </div>
   );
 }
