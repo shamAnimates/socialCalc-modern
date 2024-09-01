@@ -31,7 +31,7 @@ function App() {
             const data = await response.json();
             setSpreadsheets(data);
             if (data.length === 1) {
-                setActiveSpreadsheetId(data[0]._id); // Automatically open the first spreadsheet if only one exists
+                setActiveSpreadsheetId(data[0]._id); // open the first spreadsheet if only one exists
             }
         } else {
             alert('Failed to load spreadsheets');

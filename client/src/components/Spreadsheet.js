@@ -87,7 +87,7 @@ function Spreadsheet({ spreadsheetId, onLogout, onBack }) {
             },
             body: JSON.stringify({ 
                 data,
-                name: document.querySelector('.table-name input').value // Use the actual input value here
+                name: document.querySelector('.table-name input').value
             }),
         });
 

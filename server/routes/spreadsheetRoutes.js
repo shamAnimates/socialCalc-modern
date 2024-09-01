@@ -38,7 +38,7 @@ router.get('/:id', authMiddleware, async (req, res) => {
 
 // POST create new spreadsheet
 router.post('/', authMiddleware, async (req, res) => {
-    const { name, data = [['', '', ''], ['', '', ''], ['', '', '']] } = req.body; // Default data initialization
+    const { name, data = [['', '', ''], ['', '', ''], ['', '', '']] } = req.body; // Default data
 
     if (!req.user) {
         return res.status(401).json({ message: 'User not authenticated' });
@@ -64,7 +64,7 @@ router.post('/', authMiddleware, async (req, res) => {
 });
 
 
-// PUT update an existing spreadsheet
+// PUT update existing spreadsheet
 router.put('/:id', authMiddleware, async (req, res) => {
     const { id } = req.params;
     const { name, data } = req.body;
@@ -74,16 +74,16 @@ router.put('/:id', authMiddleware, async (req, res) => {
     }
 
     try {
-        // Find the spreadsheet by ID and ensure it belongs to the authenticated user
+        
         const spreadsheet = await Spreadsheet.findOne({ _id: id, owner: req.user._id });
 
         if (!spreadsheet) {
             return res.status(404).json({ message: 'Spreadsheet not found' });
         }
 
-        // Update the spreadsheet with the new data
+        
         if (name) spreadsheet.name = name;
-        if (data) spreadsheet.data = data; // Update the data field as needed
+        if (data) spreadsheet.data = data;
 
         await spreadsheet.save();
         res.json(spreadsheet);

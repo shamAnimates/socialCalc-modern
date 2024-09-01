@@ -4,7 +4,9 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="footer">
-      <p> SIH Internal Round</p>
+      <p> SIH Internal Round
+        ©️ Compile Squad
+      </p>
     </footer>
   );
 }
